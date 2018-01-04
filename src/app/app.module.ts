@@ -9,20 +9,24 @@ import { HeroDetailComponent } from './heroDetail/hero-detail.component';
 import { MessageComponent } from './message/message.component';
 import { MessageService } from './services/message.service';
 import { AppRoutingModule } from './/app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
+  // Here comes all components that needs include
   declarations: [
     AppComponent,
     HeroesComponent,
     HeroDetailComponent,
-    MessageComponent
+    MessageComponent,
+    DashboardComponent
   ],
+  // Here comes all modules that needs to import
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule
   ],
   providers: [MessageService, HeroService], // services will come here.
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] // Default component
 })
 export class AppModule { }
