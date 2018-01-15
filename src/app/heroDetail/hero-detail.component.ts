@@ -15,9 +15,11 @@ import { HeroService } from '../services/hero.service';
             <label>name: </label>
             <input [(ngModel)]="hero.name" placeholder="name">
         </div>
+        <button (click)="save()">save</button>
+        <button (click)="goBack()">go back</button>
         </div>
   `
-})      
+})
 
 export class HeroDetailComponent {
     constructor(
@@ -30,10 +32,22 @@ export class HeroDetailComponent {
         this.getHero();
     }
 
+    idFetched = '';
+
     getHero(): void {
         const id = +this.route.snapshot.paramMap.get('id');
+        // this.route.params.subscribe(id=>{ this.idFetched  = id.id; });
         this.heroService.getHero(id)
             .subscribe(hero => this.hero = hero);
+    }
+
+    save(): void {
+        this.heroService.updateHero(this.hero)
+          .subscribe(() => this.goBack());
+    }
+
+    goBack(): void {
+        this.location.back();
     }
 
 }
